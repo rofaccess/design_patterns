@@ -1,3 +1,5 @@
+/* La idea de los siguientes ejemplos es demostrar los límites de la herencia */
+
 public class Duck{
 	/* Primer comportamiento agregado, todos los patos dicen quack */
 	public void quack(){
@@ -23,7 +25,35 @@ public class WildDuck extends Duck{
 	}
 
 	/*
-		No hace falta sobreescribir el comportamiento porque todos los patos vuelan de la misma manera
+		No hace falta sobreescribir el comportamiento porque este pato vuela igual que su padre
+		public void fly(){}
+	*/
+}
+
+public class MontainDuck extends Duck{
+	/*
+	El pato de montaña, dice quack igual que su pariente pato salvaje, pero ambos patos son hijos de Quack,
+	y tienen la misma forma de decir quack pero es un quack diferente al de su padre, entonces ambos patos
+	sobreescriben quack y duplican el comportamiento. El código duplicado es mala práctica por varios motivos según Wikipedia,
+	pero la que más resalta son las siguientes:
+	- Si descubrimos que ambos patos dicen Quatro en vez de Quackrrrr, entonces se debe actualizar dos pedazos de cóodigo
+	- Podriamos olvidarnos de actualizar uno de los codigos por lo cual ocurriría inconsistencias en nuestros patos.
+	- Al tener código duplicado aumenta la cantidad de código y dificulta el mantenimiento
+
+	Uno podría pensar que la solución a esto es otra clase que herede de Quack, que se el nuevo padre de ambos patos y que implemente
+	quack para que diga Quatro, ahora supongamos que Duck implementa el comportamiento comer, y que el pato de montaña come de una manera
+	y el pato salvaje come de otra manera, ahora supongamos que pato de granja como igual que el pato salvaje, entonces podriamos
+	querer crear una clase padre para pato de granja y pato salvaje, con el objetivo de que coman igual, entonces estaremos necesitando
+	herencia multiple, pero se dice que la solucion a problemas de herencia NO es agregar más herencia, además con la herencia múltiple
+	se tienen problemas potenciales como ser: Problema del diamante, Herencia repetida . Java no permite la herencia múltiple porque acarrea más problemas
+	que soluciones, pero en teoría admite herencia multiple a través de interfaces.
+*/
+	public void quack(){
+		System.out.println("Quackrrrr");
+	}
+
+	/*
+		No hace falta sobreescribir el comportamiento porque este pato vuela igual que su padre
 		public void fly(){}
 	*/
 }
